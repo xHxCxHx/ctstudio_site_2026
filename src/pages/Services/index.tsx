@@ -1,4 +1,4 @@
-import React from "react";
+//src/pages/Services/index.tsx
 
 export default function Services() {
   return (

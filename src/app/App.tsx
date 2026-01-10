@@ -1,5 +1,6 @@
 // src/app/App.tsx
-import React from "react";
+
+
 import { Link, useLocation } from "react-router-dom";
 import AppRoutes from "./routes";
 import { PAGES } from "./pages.registry";

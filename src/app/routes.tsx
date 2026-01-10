@@ -1,5 +1,5 @@
 // src/app/routes.tsx
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { PAGES } from "./pages.registry";
 

@@ -1,4 +1,4 @@
-import React from "react";
+//src/pages/Home/index.tsx
 
 export default function Home() {
   return (

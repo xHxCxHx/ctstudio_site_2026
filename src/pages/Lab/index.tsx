@@ -1,4 +1,4 @@
-import React from "react";
+//src/pages/Lab/index.tsx
 
 export default function Lab() {
   return (
