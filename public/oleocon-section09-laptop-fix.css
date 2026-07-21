@@ -1,0 +1,15 @@
+/* Section 09 laptop only: remove forced line breaks from three showcase bodies and prevent orphan words. */
+@media (min-width: 1181px) and (max-width: 1800px),
+       (min-width: 1181px) and (max-height: 1000px) {
+  body .oleocon-page #final .section09-showcase-card:nth-child(1) .section09-showcase-body,
+  body .oleocon-page #final .section09-showcase-card:nth-child(3) .section09-showcase-body,
+  body .oleocon-page #final .section09-showcase-card:nth-child(4) .section09-showcase-body {
+    width: 100% !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    text-wrap: balance !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    hyphens: none !important;
+  }
+}
