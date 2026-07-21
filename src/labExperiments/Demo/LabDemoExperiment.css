@@ -1,0 +1,124 @@
+/* src/labExperiments/Demo/LabDemoExperiment.css */
+
+.labDemoExperiment {
+  width: 100%;
+  min-height: min(68dvh, 680px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  overflow: hidden;
+  background: #080b12;
+  color: #fff;
+}
+
+.labDemoExperimentScene {
+  min-height: 520px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(93, 133, 255, 0.28), transparent 27%),
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.12), transparent 20%),
+    #06070b;
+}
+
+.labDemoExperimentGrid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.28;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.11) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.11) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(circle at center, #000, transparent 74%);
+}
+
+.labDemoExperimentCore {
+  width: clamp(160px, 26vw, 360px);
+  aspect-ratio: 1;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.04)),
+    radial-gradient(circle at 38% 32%, rgba(255, 255, 255, 0.85), transparent 18%);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  box-shadow:
+    0 0 70px rgba(85, 122, 255, 0.32),
+    inset 0 0 48px rgba(255, 255, 255, 0.15);
+  transition: transform 260ms ease;
+}
+
+.labDemoExperimentScene i {
+  position: absolute;
+  display: block;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0 22px rgba(255, 255, 255, 0.72);
+  opacity: 0.78;
+  transition: transform 260ms ease, left 260ms ease, top 260ms ease;
+}
+
+.labDemoExperimentPanel {
+  padding: clamp(28px, 4vw, 54px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 22px;
+  background: #f7f6f1;
+  color: #08101c;
+}
+
+.labDemoExperimentPanel p {
+  margin: 0;
+  color: rgba(8, 16, 28, 0.54);
+  font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.labDemoExperimentPanel h4 {
+  max-width: 8ch;
+  margin: 0;
+  color: #08101c;
+  font-size: clamp(44px, 4.8vw, 74px);
+  font-weight: 780;
+  line-height: 0.94;
+  letter-spacing: -0.065em;
+}
+
+.labDemoExperimentPanel span {
+  max-width: 420px;
+  color: rgba(8, 16, 28, 0.72);
+  font-size: clamp(16px, 1.2vw, 20px);
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+}
+
+.labDemoExperimentPanel label {
+  display: grid;
+  gap: 10px;
+  color: rgba(8, 16, 28, 0.78);
+  font-size: 13px;
+  letter-spacing: -0.01em;
+}
+
+.labDemoExperimentPanel b {
+  font-weight: 760;
+}
+
+.labDemoExperimentPanel input {
+  width: 100%;
+  accent-color: #08101c;
+}
+
+@media (max-width: 900px) {
+  .labDemoExperiment {
+    grid-template-columns: 1fr;
+  }
+
+  .labDemoExperimentScene {
+    min-height: 420px;
+  }
+}

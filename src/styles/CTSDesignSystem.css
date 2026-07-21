@@ -1,0 +1,570 @@
+/* src/styles/CTSDesignSystem.css */
+
+/* =========================================================
+   CTS DESIGN SYSTEM
+   Single source of truth for global typography, color roles,
+   layout edges, sharp geometry, responsive spacing and UI motion.
+========================================================= */
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/GOTHAM/Gotham-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/GOTHAM/Gotham-Book.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/GOTHAM/Gotham-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/GOTHAM/Gotham-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/GOTHAM/Gotham-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* =======================================================
+     FONT
+  ======================================================= */
+  --cts-font-main:
+    "Gotham",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  /* =======================================================
+     APPROVED NEAR-BLACK PALETTE
+  ======================================================= */
+  --cts-charcoal-gray: #121212;
+  --cts-dark-slate-gray: #191919;
+  --cts-outer-space: #252525;
+  --cts-rich-black: #0A0A0A;
+  --cts-coffee-bean: #1B1B1B;
+  --cts-dark-gray: #212427;
+  --cts-oil-black: #0C0C0C;
+  --cts-obsidian: #0B1215;
+  --cts-ebony: #222428;
+  --cts-black-chocolate: #100D08;
+  --cts-gunmetal: #1D1F21;
+  --cts-smoky-black: #101720;
+  --cts-oxford-blue: #212A37;
+  --cts-eerie-black: #232023;
+  --cts-jet-black: #161618;
+  --cts-iridium: #181818;
+  --cts-arsenic: #11181C;
+  --cts-charleston-green: #212124;
+  --cts-jet: #2A2A2A;
+  --cts-black-olive: #242526;
+  --cts-midnight-blue: #212121;
+
+  /* =======================================================
+     APPROVED NEAR-WHITE PALETTE
+  ======================================================= */
+  --cts-alabaster: #F2F0EA;
+  --cts-isabelline: #F4F0EA;
+  --cts-baby-powder: #FEFEFA;
+  --cts-snow: #FFFAFA;
+  --cts-ivory: #FFFFF0;
+  --cts-floral-white: #FFFAF0;
+  --cts-seashell: #FFF5EE;
+  --cts-bone: #E3DAC9;
+  --cts-ghost-white: #F8F8FF;
+  --cts-alice-blue: #F0F8FF;
+  --cts-mint-cream: #F5FFFA;
+  --cts-azure: #F0FFFF;
+  --cts-white-smoke: #F5F5F5;
+  --cts-timberwolf: #DDBDBC;
+  --cts-linen: #FAF0E6;
+  --cts-old-lace: #FDF5E6;
+  --cts-pearl: #F0EAD6;
+  --cts-antique-white: #FAEBD7;
+  --cts-blanched-almond: #FFEBCD;
+  --cts-papaya-whip: #FFEFD5;
+  --cts-beige: #F5F5DC;
+
+  /* =======================================================
+     BRAND ACCENTS
+  ======================================================= */
+  --cts-blue: #0d1d5f;
+  --cts-red: #cd2028;
+
+  /* =======================================================
+     GLOBAL COLOR ROLES
+     Home-approved dark mother color is the default text color.
+     Override these roles per page only when the page theme needs it.
+  ======================================================= */
+  --cts-bg: var(--cts-alabaster);
+  --cts-bg-soft: var(--cts-isabelline);
+  --cts-surface: rgba(242, 240, 234, 0.22);
+  --cts-surface-strong: rgba(242, 240, 234, 0.78);
+
+  --cts-black: #172e45;
+  --cts-text: var(--cts-black);
+  --cts-heading: var(--cts-black);
+  --cts-label: var(--cts-black);
+  --cts-muted: rgba(11, 15, 19, 0.66);
+  --cts-line: rgba(33, 36, 39, 0.14);
+  --cts-line-strong: rgba(33, 36, 39, 0.28);
+
+  --cts-invert-bg: var(--cts-charcoal-gray);
+  --cts-invert-text: var(--cts-alabaster);
+  --cts-invert-muted: rgba(242, 240, 234, 0.72);
+  --cts-invert-line: rgba(242, 240, 234, 0.18);
+
+  /* =======================================================
+     SHARP GEOMETRY
+     CTS industrial UI does not use pill/oval/rounded defaults.
+  ======================================================= */
+  --cts-radius-none: 0px;
+  --cts-radius-sm: 0px;
+  --cts-radius-md: 0px;
+  --cts-radius-lg: 0px;
+  --cts-radius-ui: 0px;
+
+  /* =======================================================
+     SAFE EDGES + LAYOUT GRID
+     Normal readable text and related UI groups use these.
+  ======================================================= */
+  --cts-safe-left: clamp(24px, 8.5vw, 164px);
+  --cts-safe-right: clamp(18px, 6vw, 132px);
+  --cts-page-pad: clamp(18px, 4vw, 56px);
+  --cts-max: 1480px;
+
+  --cts-content-max: 1480px;
+  --cts-readable-max: 760px;
+  --cts-narrow-readable-max: 520px;
+
+  /* =======================================================
+     UI BOX SIZING
+     Boxes are content-aware by default and must keep breathing room.
+  ======================================================= */
+  --cts-ui-pad-x: clamp(14px, 1.4vw, 22px);
+  --cts-ui-pad-y: clamp(10px, 1.2svh, 14px);
+  --cts-ui-gap-xs: clamp(6px, 0.7vw, 10px);
+  --cts-ui-gap-sm: clamp(10px, 1vw, 14px);
+  --cts-ui-gap-md: clamp(14px, 1.6vw, 24px);
+  --cts-ui-gap-lg: clamp(24px, 3vw, 48px);
+
+  --cts-border-subtle: 1px solid var(--cts-line);
+  --cts-border-medium: 1px solid var(--cts-line-strong);
+
+  /* =======================================================
+     APPROVED BOX / ACTION / RAIL SYSTEM
+     Boxes are content-aware and sharp. Text may animate inside;
+     outer boxes must stay stable.
+  ======================================================= */
+  --cts-action-text-size: clamp(10px, 0.72vw, 12px);
+  --cts-action-weight: var(--cts-weight-bold);
+  --cts-action-line: 1;
+  --cts-action-tracking: 0.07em;
+  --cts-action-height: clamp(40px, 5.4svh, 48px);
+  --cts-action-pad-x: clamp(18px, 1.65vw, 22px);
+  --cts-action-pad-y: clamp(10px, 1.5svh, 14px);
+
+  --cts-rail-text-size: clamp(14px, min(1.12vw, 2.2svh), 22px);
+  --cts-rail-weight: var(--cts-weight-book);
+  --cts-rail-line: 1;
+  --cts-rail-tracking: -0.035em;
+  --cts-rail-pad-x: clamp(10px, 1vw, 14px);
+  --cts-rail-pad-y: clamp(6px, 1.1svh, 8px);
+
+  --cts-action-dark-bg: var(--cts-text);
+  --cts-action-dark-text: var(--cts-alabaster);
+  --cts-action-light-bg: rgba(242, 240, 234, 0.34);
+  --cts-action-light-text: var(--cts-text);
+
+  /* =======================================================
+     APPROVED TYPE SYSTEM
+     Values approved in Contact/System Test page.
+     Use only real Gotham weights: 300 / 400 / 500 / 700 / 900.
+  ======================================================= */
+  --cts-weight-light: 300;
+  --cts-weight-book: 400;
+  --cts-weight-medium: 500;
+  --cts-weight-bold: 700;
+  --cts-weight-black: 900;
+
+  --cts-type-micro: clamp(10px, 0.66vw, 12px);
+
+  --cts-type-hero: clamp(54px, min(6.4vw, 10.8svh), 128px);
+  --cts-type-hero-weight: var(--cts-weight-black);
+  --cts-type-hero-line: 0.9;
+  --cts-type-hero-tracking: -0.04em;
+
+  --cts-type-section-title: clamp(32px, 3.8vw, 74px);
+  --cts-type-section-weight: var(--cts-weight-black);
+  --cts-type-section-line: 0.98;
+  --cts-type-section-tracking: -0.04em;
+
+  --cts-type-card-title: clamp(20px, 2vw, 40px);
+  --cts-type-card-title-weight: var(--cts-weight-bold);
+  --cts-type-card-title-line: 1;
+  --cts-type-card-title-tracking: -0.02em;
+
+  --cts-type-body: clamp(14px, 0.9vw, 16px);
+  --cts-type-body-large: clamp(15px, min(1.12vw, 2.2svh), 25px);
+  --cts-type-body-weight: var(--cts-weight-book);
+  --cts-type-body-line: 1.42;
+  --cts-type-body-tracking: 0em;
+
+  --cts-type-label: clamp(10px, 0.72vw, 17px);
+  --cts-type-label-weight: var(--cts-weight-bold);
+  --cts-type-label-line: 1;
+  --cts-type-label-tracking: 0.08em;
+
+  --cts-type-button: clamp(10px, 0.72vw, 15px);
+  --cts-type-button-weight: var(--cts-weight-bold);
+  --cts-type-button-line: 1;
+  --cts-type-button-tracking: 0.07em;
+
+  --cts-leading-tight: var(--cts-type-section-line);
+  --cts-leading-body: var(--cts-type-body-line);
+  --cts-tracking-label: var(--cts-type-label-tracking);
+  --cts-tracking-title: var(--cts-type-section-tracking);
+
+  /* =======================================================
+     MOTION
+  ======================================================= */
+  --cts-ease-main: cubic-bezier(0.16, 1, 0.3, 1);
+  --cts-ease-roll: cubic-bezier(0.19, 1, 0.22, 1);
+  --cts-duration-fast: 180ms;
+  --cts-duration-mid: 420ms;
+  --cts-duration-slow: 780ms;
+
+
+  /* =======================================================
+     APPROVED HOME / SITE UI CONTROL TOKENS
+     این عددها تنظیمات عمومی هستند؛ صفحه‌ها باید از همین‌ها مصرف کنند.
+     اگر فلش، rail یا گروه دکمه‌ها در چند صفحه تکرار شد، عدد را اینجا تغییر بده.
+  ======================================================= */
+  --cts-home-hero-ui-width: 500px; /* عرض مشترک دکمه‌های Hero و rail */
+  --cts-home-pill-text-size: 24px; /* سایز Cinematic / Interactive / Real-time */
+  --cts-home-pill-pad-x: 22px; /* فضای چپ و راست داخل rail */
+  --cts-home-pill-pad-y: 9px; /* فضای بالا و پایین داخل rail */
+  --cts-home-pill-gap: 30px; /* فاصله بین آیتم‌های rail */
+
+  --cts-arrow-size: 20px; /* کنترل سایز همه فلش‌های سایت؛ بیشتر = بزرگ‌تر، کمتر = کوچک‌تر */
+  --cts-slider-arrow-ratio: 0.26; /* نسبت فلش‌های کوچک اسلایدر به فلش اصلی */
+  --cts-arrow-on-dark: var(--cts-alabaster); /* فلش روی پس‌زمینه تیره */
+  --cts-arrow-on-light: var(--cts-text); /* فلش روی پس‌زمینه روشن */
+  --cts-hero-title-contrast: var(--cts-alabaster); /* کلمات سفید/روشن داخل تیتر Hero */
+}
+
+
+/* =========================================================
+   GLOBAL GOTHAM FONT LOCK
+   This block forces the approved Gotham family across normal
+   page text and UI. Keep it here, directly after :root, so
+   it becomes part of the design system instead of a page patch.
+========================================================= */
+
+html,
+body,
+#root {
+  font-family: var(--cts-font-main) !important;
+}
+
+body,
+body *:not(svg):not(path) {
+  font-family: var(--cts-font-main) !important;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: var(--cts-font-main) !important;
+}
+
+
+
+/* =========================================================
+   GLOBAL ARROW + HERO CONTRAST WORD SYSTEM
+   Use these classes anywhere in the site instead of writing
+   page-specific arrow/color CSS again.
+========================================================= */
+
+.cts-arrow {
+  font-size: var(--cts-arrow-size) !important;
+  line-height: 1 !important;
+  display: inline-block;
+  transform: translate(3px, -3px);
+}
+
+.cts-arrowOnDark {
+  color: var(--cts-arrow-on-dark) !important;
+}
+
+.cts-arrowOnLight {
+  color: var(--cts-arrow-on-light) !important;
+}
+
+.cts-arrowButton {
+  font-size: calc(var(--cts-arrow-size) * var(--cts-slider-arrow-ratio)) !important;
+  line-height: 1 !important;
+}
+
+.cts-heroTitleWhite {
+  color: var(--cts-hero-title-contrast) !important;
+}
+
+/* =========================================================
+   GLOBAL STRUCTURAL CLASSES
+========================================================= */
+
+.cts-layout-safe,
+.cts-text-safe {
+  width: 100%;
+  min-width: 0;
+  padding-left: var(--cts-safe-left);
+  padding-right: var(--cts-safe-right);
+}
+
+.cts-layout-block {
+  width: min(
+    calc(100% - var(--cts-safe-left) - var(--cts-safe-right)),
+    var(--cts-content-max)
+  );
+  margin-inline: auto;
+}
+
+.cts-readable {
+  max-width: var(--cts-readable-max);
+}
+
+.cts-narrow-readable {
+  max-width: var(--cts-narrow-readable-max);
+}
+
+.cts-ui-box {
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 1px;
+  padding: var(--cts-ui-pad-y) var(--cts-ui-pad-x);
+  border: var(--cts-border-subtle);
+  border-radius: var(--cts-radius-ui);
+}
+
+.cts-aligned-stack {
+  display: grid;
+  width: 100%;
+  gap: var(--cts-ui-gap-md);
+}
+
+.cts-aligned-row {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+  gap: var(--cts-ui-gap-md);
+}
+
+/* =========================================================
+   GLOBAL TEXT EDIT CONTROLS
+========================================================= */
+
+.cts-textControl {
+  --text-size-add: 0px;
+  --text-x: 0px;
+  --text-y: 0px;
+
+  transform: translate3d(var(--text-x), var(--text-y), 0);
+  will-change: transform;
+}
+
+/* =========================================================
+   GLOBAL EDITABLE TEXT / MANUAL LINE BREAKS
+   Add this class to any real content text that must respect
+   manual Enter line breaks from TSX/config strings.
+========================================================= */
+
+.cts-editableText,
+.cts-preLine,
+[data-cts-editable-text="true"] {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.cts-preWrap {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   GLOBAL CREDIT-ROLL TEXT ANIMATION
+   Use with:
+   <span className="cts-rollText" data-roll-text="Text">Text</span>
+========================================================= */
+
+.cts-rollText {
+  position: relative;
+  display: inline-grid;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.cts-rollText::before,
+.cts-rollText::after {
+  grid-area: 1 / 1;
+  content: attr(data-roll-text);
+  display: block;
+  transition: transform var(--cts-duration-mid) var(--cts-ease-roll);
+  will-change: transform;
+}
+
+.cts-rollText::before {
+  transform: translateY(0%);
+}
+
+.cts-rollText::after {
+  transform: translateY(115%);
+}
+
+a:hover .cts-rollText::before,
+button:hover .cts-rollText::before,
+.cts-rollHost:hover .cts-rollText::before {
+  transform: translateY(-115%);
+}
+
+a:hover .cts-rollText::after,
+button:hover .cts-rollText::after,
+.cts-rollHost:hover .cts-rollText::after {
+  transform: translateY(0%);
+}
+
+/* Hide original text node while keeping semantic text in the DOM. */
+.cts-rollText > span {
+  visibility: hidden;
+  grid-area: 1 / 1;
+}
+
+/* =========================================================
+   RESPONSIVE EDGE TOKENS
+========================================================= */
+
+@media (min-width: 1800px) {
+  :root {
+    --cts-safe-left: 176px;
+    --cts-safe-right: 176px;
+  }
+}
+
+@media (max-width: 1440px) {
+  :root {
+    --cts-safe-left: clamp(28px, 8vw, 116px);
+    --cts-safe-right: clamp(22px, 5vw, 82px);
+  }
+}
+
+@media (max-width: 1280px) {
+  :root {
+    --cts-safe-left: clamp(24px, 6.5vw, 82px);
+    --cts-safe-right: clamp(20px, 4vw, 54px);
+  }
+}
+
+@media (max-width: 860px) {
+  :root {
+    --cts-safe-left: clamp(18px, 5vw, 28px);
+    --cts-safe-right: clamp(18px, 5vw, 28px);
+    --cts-page-pad: clamp(18px, 5vw, 28px);
+  }
+
+  .cts-aligned-row {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cts-rollText::before,
+  .cts-rollText::after {
+    transition: none !important;
+  }
+
+  .cts-rollText::before {
+    transform: none !important;
+  }
+
+  .cts-rollText::after {
+    display: none !important;
+  }
+}
+
+
+/* =========================================================
+   CTS GLOBAL BOX BREATHING / ONE-LINE UI BOX LAW
+   Text-based boxes must breathe, stay sharp, and avoid cramped
+   word collisions. Use for tags, CTA boxes, small label boxes and rails.
+========================================================= */
+
+.cts-oneLineBox,
+.cts-inlineBox,
+.cts-tagBox,
+.cts-actionBox {
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 100%;
+  min-width: max-content;
+  padding: var(--cts-ui-pad-y) var(--cts-ui-pad-x);
+  border-radius: 0;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+.cts-boxText,
+.cts-titleText,
+.cts-headingText {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+.cts-relatedBoxStack {
+  width: fit-content;
+  max-width: 100%;
+  display: grid;
+  align-items: stretch;
+  gap: var(--cts-ui-gap-md);
+}
+
+.cts-relatedBoxStack > * {
+  width: 100%;
+}
+
+@media (max-width: 860px) {
+  .cts-oneLineBox,
+  .cts-inlineBox,
+  .cts-tagBox,
+  .cts-actionBox {
+    min-width: 0;
+  }
+}

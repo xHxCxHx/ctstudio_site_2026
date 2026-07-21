@@ -1,0 +1,145 @@
+/* src/styles/OleoconDS.css */
+
+:root {
+  --cts-oleocon-font-family: var(--cts-font-main, "Gotham", "Gotham SSm", "Gotham A", "Gotham B", Arial, sans-serif);
+  --cts-oleocon-font-style: normal;
+  --cts-oleocon-font-stretch: normal;
+  --cts-oleocon-font-kerning: normal;
+  --cts-oleocon-font-feature-settings: normal;
+  --cts-oleocon-text-rendering: auto;
+
+  --cts-oleocon-color-bg: #2b2c29;
+  --cts-oleocon-color-bg-deep: #181917;
+  --cts-oleocon-color-video-black: #050605;
+  --cts-oleocon-color-video-deep: #070807;
+  --cts-oleocon-color-video-soft: #10110f;
+  --cts-oleocon-color-text: #f2f0ea;
+  --cts-oleocon-color-text-bright: #f5f6ef;
+  --cts-oleocon-color-muted: color-mix(in srgb, var(--cts-oleocon-color-text) 66%, transparent);
+  --cts-oleocon-color-soft: color-mix(in srgb, var(--cts-oleocon-color-text) 34%, transparent);
+  --cts-oleocon-color-line: color-mix(in srgb, var(--cts-oleocon-color-text) 14%, transparent);
+  --cts-oleocon-color-accent: #76b900;
+  --cts-oleocon-color-accent-soft: color-mix(in srgb, var(--cts-oleocon-color-accent) 38%, transparent);
+  --cts-oleocon-color-accent-light: #d6ffad;
+  --cts-oleocon-color-accent-light-soft: color-mix(in srgb, var(--cts-oleocon-color-accent-light) 68%, transparent);
+  --cts-oleocon-color-panel: rgba(14, 15, 13, 0.34);
+  --cts-oleocon-color-panel-border: color-mix(in srgb, var(--cts-oleocon-color-text-bright) 18%, transparent);
+  --cts-oleocon-color-glass-highlight: color-mix(in srgb, var(--cts-oleocon-color-text) 13%, transparent);
+  --cts-oleocon-color-shadow: rgba(0, 0, 0, 0.42);
+
+  --cts-oleocon-hero-title-font-size-desktop: 104px;
+  --cts-oleocon-hero-title-font-size-laptop: 78px;
+  --cts-oleocon-hero-title-font-size-tablet: 64px;
+  --cts-oleocon-hero-title-font-size-mobile: 56px;
+  --cts-oleocon-hero-title-font-size: var(--cts-oleocon-hero-title-font-size-desktop);
+  --cts-oleocon-hero-title-font-weight: 900;
+  --cts-oleocon-hero-title-line-height: 1;
+  --cts-oleocon-hero-title-letter-spacing: 0em;
+  --cts-oleocon-hero-title-word-spacing: 0em;
+
+  --cts-oleocon-type1-index-eyebrow-font-size-desktop: 13px;
+  --cts-oleocon-type1-title-font-size-desktop: 104px;
+  --cts-oleocon-type1-body-font-size-desktop: 22px;
+  --cts-oleocon-type1-chip-font-size-desktop: 13px;
+  --cts-oleocon-type1-index-eyebrow-font-size-laptop: 12px;
+  --cts-oleocon-type1-title-font-size-laptop: 78px;
+  --cts-oleocon-type1-body-font-size-laptop: 18px;
+  --cts-oleocon-type1-chip-font-size-laptop: 12px;
+  --cts-oleocon-type1-index-eyebrow-font-size-tablet: 11px;
+  --cts-oleocon-type1-title-font-size-tablet: 64px;
+  --cts-oleocon-type1-body-font-size-tablet: 22px;
+  --cts-oleocon-type1-chip-font-size-tablet: 11px;
+  --cts-oleocon-type1-index-eyebrow-font-size-mobile: 10px;
+  --cts-oleocon-type1-title-font-size-mobile: 56px;
+  --cts-oleocon-type1-body-font-size-mobile: 18px;
+  --cts-oleocon-type1-chip-font-size-mobile: 10px;
+  --cts-oleocon-type1-index-eyebrow-font-size: var(--cts-oleocon-type1-index-eyebrow-font-size-desktop);
+  --cts-oleocon-type1-title-font-size: var(--cts-oleocon-type1-title-font-size-desktop);
+  --cts-oleocon-type1-body-font-size: var(--cts-oleocon-type1-body-font-size-desktop);
+  --cts-oleocon-type1-chip-font-size: var(--cts-oleocon-type1-chip-font-size-desktop);
+  --cts-oleocon-type1-index-eyebrow-font-weight: 700;
+  --cts-oleocon-type1-title-font-weight: 900;
+  --cts-oleocon-type1-body-font-weight: 400;
+  --cts-oleocon-type1-chip-font-weight: 700;
+  --cts-oleocon-type1-index-eyebrow-line-height: 1.2;
+  --cts-oleocon-type1-title-line-height: 1;
+  --cts-oleocon-type1-body-line-height: 1.4;
+  --cts-oleocon-type1-chip-line-height: 1.2;
+  --cts-oleocon-type1-index-eyebrow-letter-spacing: 0em;
+  --cts-oleocon-type1-title-letter-spacing: 0em;
+  --cts-oleocon-type1-body-letter-spacing: 0em;
+  --cts-oleocon-type1-chip-letter-spacing: 0em;
+  --cts-oleocon-type1-index-eyebrow-word-spacing: 0em;
+  --cts-oleocon-type1-title-word-spacing: 0em;
+  --cts-oleocon-type1-body-word-spacing: 0em;
+  --cts-oleocon-type1-chip-word-spacing: 0em;
+
+  --cts-oleocon-type2-title-font-size-desktop: 46px;
+  --cts-oleocon-type2-title-font-size-laptop: 40px;
+  --cts-oleocon-type2-title-font-size-tablet: 38px;
+  --cts-oleocon-type2-title-font-size-mobile: 34px;
+  --cts-oleocon-type2-body-font-size-desktop: 16px;
+  --cts-oleocon-type2-body-font-size-laptop: 15px;
+  --cts-oleocon-type2-body-font-size-tablet: 16px;
+  --cts-oleocon-type2-body-font-size-mobile: 16px;
+  --cts-oleocon-type2-title-font-size: var(--cts-oleocon-type2-title-font-size-desktop);
+  --cts-oleocon-type2-body-font-size: var(--cts-oleocon-type2-body-font-size-desktop);
+  --cts-oleocon-type2-title-font-weight: 900;
+  --cts-oleocon-type2-body-font-weight: 400;
+  --cts-oleocon-type2-title-line-height: 1.2;
+  --cts-oleocon-type2-body-line-height: 1.2;
+  --cts-oleocon-type2-title-letter-spacing: 0em;
+  --cts-oleocon-type2-body-letter-spacing: 0em;
+  --cts-oleocon-type2-title-word-spacing: 0em;
+  --cts-oleocon-type2-body-word-spacing: 0em;
+
+  --cts-oleocon-type3-title-font-size-desktop: 24px;
+  --cts-oleocon-type3-title-font-size-laptop: 20px;
+  --cts-oleocon-type3-title-font-size-tablet: 28px;
+  --cts-oleocon-type3-title-font-size-mobile: 26px;
+  --cts-oleocon-type3-title-font-size: var(--cts-oleocon-type3-title-font-size-desktop);
+  --cts-oleocon-type3-title-font-weight: 900;
+  --cts-oleocon-type3-title-line-height: 1.16;
+  --cts-oleocon-type3-title-letter-spacing: 0em;
+  --cts-oleocon-type3-title-word-spacing: 0em;
+}
+
+@media (min-width: 1181px) and (max-width: 1600px),
+       (min-width: 1181px) and (max-height: 900px) {
+  :root {
+    --cts-oleocon-hero-title-font-size: var(--cts-oleocon-hero-title-font-size-laptop);
+    --cts-oleocon-type1-index-eyebrow-font-size: var(--cts-oleocon-type1-index-eyebrow-font-size-laptop);
+    --cts-oleocon-type1-title-font-size: var(--cts-oleocon-type1-title-font-size-laptop);
+    --cts-oleocon-type1-body-font-size: var(--cts-oleocon-type1-body-font-size-laptop);
+    --cts-oleocon-type1-chip-font-size: var(--cts-oleocon-type1-chip-font-size-laptop);
+    --cts-oleocon-type2-title-font-size: var(--cts-oleocon-type2-title-font-size-laptop);
+    --cts-oleocon-type2-body-font-size: var(--cts-oleocon-type2-body-font-size-laptop);
+    --cts-oleocon-type3-title-font-size: var(--cts-oleocon-type3-title-font-size-laptop);
+  }
+}
+
+@media (min-width: 621px) and (max-width: 1180px) {
+  :root {
+    --cts-oleocon-hero-title-font-size: var(--cts-oleocon-hero-title-font-size-tablet);
+    --cts-oleocon-type1-index-eyebrow-font-size: var(--cts-oleocon-type1-index-eyebrow-font-size-tablet);
+    --cts-oleocon-type1-title-font-size: var(--cts-oleocon-type1-title-font-size-tablet);
+    --cts-oleocon-type1-body-font-size: var(--cts-oleocon-type1-body-font-size-tablet);
+    --cts-oleocon-type1-chip-font-size: var(--cts-oleocon-type1-chip-font-size-tablet);
+    --cts-oleocon-type2-title-font-size: var(--cts-oleocon-type2-title-font-size-tablet);
+    --cts-oleocon-type2-body-font-size: var(--cts-oleocon-type2-body-font-size-tablet);
+    --cts-oleocon-type3-title-font-size: var(--cts-oleocon-type3-title-font-size-tablet);
+  }
+}
+
+@media (max-width: 620px) {
+  :root {
+    --cts-oleocon-hero-title-font-size: var(--cts-oleocon-hero-title-font-size-mobile);
+    --cts-oleocon-type1-index-eyebrow-font-size: var(--cts-oleocon-type1-index-eyebrow-font-size-mobile);
+    --cts-oleocon-type1-title-font-size: var(--cts-oleocon-type1-title-font-size-mobile);
+    --cts-oleocon-type1-body-font-size: var(--cts-oleocon-type1-body-font-size-mobile);
+    --cts-oleocon-type1-chip-font-size: var(--cts-oleocon-type1-chip-font-size-mobile);
+    --cts-oleocon-type2-title-font-size: var(--cts-oleocon-type2-title-font-size-mobile);
+    --cts-oleocon-type2-body-font-size: var(--cts-oleocon-type2-body-font-size-mobile);
+    --cts-oleocon-type3-title-font-size: var(--cts-oleocon-type3-title-font-size-mobile);
+  }
+}

@@ -1,0 +1,381 @@
+/* src/pages/Contact/contact.css */
+
+.contact-page {
+  --contact-bg: var(--cts-alabaster, #f2f0ea);
+  --contact-bg-end: #e8e7e3;
+  --contact-text: var(--cts-black, #172e45);
+  --contact-muted: var(--cts-muted, rgba(11, 15, 19, 0.66));
+  --contact-line: var(--cts-line, rgba(33, 36, 39, 0.14));
+  --contact-line-strong: var(--cts-line-strong, rgba(33, 36, 39, 0.28));
+  --contact-light: var(--cts-alabaster, #f2f0ea);
+  --contact-blue: var(--cts-blue, #1e63ff);
+  --contact-red: var(--cts-red, #e53935);
+  --contact-left-edge: var(--cts-safe-left, clamp(24px, 8.5vw, 164px));
+  --contact-right-edge: var(--cts-safe-right, clamp(18px, 6vw, 132px));
+
+  width: 100%;
+  min-height: 100svh;
+  overflow-x: hidden;
+  color: var(--contact-text);
+  background:
+    radial-gradient(circle at 14% 8%, rgba(30, 99, 255, 0.06), transparent 30%),
+    radial-gradient(circle at 88% 18%, rgba(229, 57, 53, 0.05), transparent 32%),
+    linear-gradient(180deg, var(--contact-bg), var(--contact-bg-end));
+  font-family: var(--cts-font-main, "Gotham", Arial, sans-serif);
+}
+
+.contact-page *,
+.contact-page *::before,
+.contact-page *::after {
+  box-sizing: border-box;
+}
+
+.contact-pageHead,
+.contact-approvalList {
+  width: 100%;
+  padding-left: var(--contact-left-edge);
+  padding-right: var(--contact-right-edge);
+}
+
+.contact-pageHead {
+  padding-top: clamp(112px, 15svh, 154px);
+  padding-bottom: clamp(34px, 4vw, 58px);
+  border-bottom: 1px solid var(--contact-line);
+}
+
+.contact-kicker {
+  width: fit-content;
+  margin: 0 0 clamp(16px, 1.8vw, 24px);
+  color: var(--contact-text);
+  font-size: clamp(10px, 0.72vw, 12px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.contact-pageHead h1 {
+  max-width: 760px;
+  margin: 0;
+  color: var(--contact-text);
+  font-size: clamp(32px, 3.8vw, 64px);
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: -0.052em;
+  text-transform: uppercase;
+}
+
+.contact-pageHead p {
+  max-width: 640px;
+  margin: clamp(14px, 1.8vw, 24px) 0 0;
+  color: var(--contact-muted);
+  font-size: clamp(15px, min(1.12vw, 2.2svh), 20px);
+  font-weight: 400;
+  line-height: 1.42;
+  letter-spacing: -0.02em;
+}
+
+.contact-approvalList {
+  display: grid;
+  padding-bottom: clamp(62px, 8vw, 110px);
+}
+
+.contact-row {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.28fr) minmax(0, 0.72fr);
+  gap: clamp(22px, 4vw, 64px);
+  align-items: start;
+  padding: clamp(24px, 3vw, 44px) 0;
+  border-bottom: 1px solid var(--contact-line);
+}
+
+.contact-meta {
+  display: grid;
+  gap: 8px;
+  padding-top: 2px;
+}
+
+.contact-meta strong,
+.contact-meta span {
+  font-size: clamp(10px, 0.72vw, 12px);
+  line-height: 1.2;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.contact-meta strong {
+  color: var(--contact-text);
+  font-weight: 700;
+}
+
+.contact-meta span {
+  color: var(--contact-muted);
+  font-weight: 500;
+}
+
+.contact-liveArea {
+  min-width: 0;
+}
+
+.contact-liveText {
+  width: min(100%, var(--live-width));
+  max-width: 100%;
+  margin: 0;
+  color: var(--contact-text);
+  font-size: var(--live-size);
+  font-weight: var(--live-weight);
+  line-height: var(--live-line);
+  letter-spacing: var(--live-tracking);
+  text-transform: var(--live-transform);
+  text-wrap: balance;
+}
+
+.contact-liveText--muted {
+  color: var(--contact-muted);
+}
+
+.contact-liveArea--box {
+  max-width: 684px;
+}
+
+.contact-homeActions {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.contact-action {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: fit-content;
+  min-width: max-content;
+  max-width: 100%;
+  min-height: var(--box-height);
+  padding: var(--box-pad-y) var(--box-pad-x);
+  border: 1px solid var(--contact-line-strong);
+  border-radius: 0;
+  overflow: hidden;
+  color: var(--contact-text);
+  font-size: var(--box-text-size);
+  font-weight: var(--box-weight);
+  line-height: var(--box-line);
+  letter-spacing: var(--box-tracking);
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.contact-actionDark {
+  color: var(--contact-light);
+  background: var(--contact-text);
+  border-color: var(--contact-text);
+}
+
+.contact-actionLight {
+  color: var(--contact-text);
+  background: rgba(242, 240, 234, 0.34);
+  border-color: var(--contact-line-strong);
+}
+
+.contact-actionArrow {
+  position: relative;
+  z-index: 2;
+  color: var(--contact-red);
+  font-size: 13px;
+  line-height: 1;
+  transition: transform var(--cts-duration-mid, 420ms) var(--cts-ease-main, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.contact-action:hover .contact-actionArrow {
+  transform: translate3d(3px, -3px, 0);
+}
+
+.contact-rollText {
+  position: relative;
+  z-index: 2;
+  display: inline-grid;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.contact-rollText::before,
+.contact-rollText::after {
+  grid-area: 1 / 1;
+  content: attr(data-roll-text);
+  display: block;
+  transition: transform var(--cts-duration-mid, 420ms) var(--cts-ease-roll, cubic-bezier(0.19, 1, 0.22, 1));
+}
+
+.contact-rollText::before {
+  transform: translateY(0%);
+}
+
+.contact-rollText::after {
+  transform: translateY(115%);
+}
+
+.contact-action:hover .contact-rollText::before {
+  transform: translateY(-115%);
+}
+
+.contact-action:hover .contact-rollText::after {
+  transform: translateY(0%);
+}
+
+.contact-rollText > span {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+
+.contact-homeRail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(10px, 1.6vw, 18px);
+  width: 100%;
+  padding: var(--rail-pad-y) var(--rail-pad-x);
+  border: 2px solid var(--contact-text);
+  border-radius: 0;
+  background: rgba(242, 240, 234, 0.16);
+}
+
+.contact-homeRail span {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--contact-text);
+  font-size: var(--rail-text-size);
+  font-weight: var(--rail-weight);
+  line-height: var(--rail-line);
+  letter-spacing: var(--rail-tracking);
+  white-space: nowrap;
+}
+
+.contact-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 0;
+}
+
+.contact-dotBlue {
+  background: var(--contact-blue);
+}
+
+.contact-dotRed {
+  background: var(--contact-red);
+}
+
+@media (max-width: 1180px) {
+  .contact-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .contact-pageHead {
+    padding-top: clamp(104px, 15svh, 140px);
+  }
+
+  .contact-homeActions {
+    flex-direction: column;
+  }
+
+  .contact-action {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .contact-homeRail {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .contact-liveText {
+    font-size: min(var(--live-size), 74px);
+    line-height: max(var(--live-line), 0.88);
+    letter-spacing: max(var(--live-tracking), -0.06em);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-rollText::before,
+  .contact-rollText::after,
+  .contact-actionArrow {
+    transition: none !important;
+  }
+
+  .contact-rollText::before {
+    transform: none !important;
+  }
+
+  .contact-rollText::after {
+    display: none !important;
+  }
+
+  .contact-action:hover .contact-actionArrow {
+    transform: none !important;
+  }
+}
+
+
+/* =========================================================
+   CTS GLOBAL BREATHING BOX BEHAVIOR APPLIED TO CONTACT LAB
+========================================================= */
+
+.contact-page :where(
+  .contact-liveText,
+  .contact-pageHead p,
+  .contact-meta span,
+  .contact-colorSample span
+) {
+  white-space: pre-line;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+.contact-action,
+.contact-homeRail,
+.contact-colorSample {
+  box-sizing: border-box;
+  border-radius: 0 !important;
+}
+
+.contact-action {
+  min-height: var(--box-height, var(--cts-action-min-height));
+  padding: var(--box-pad-y, var(--cts-action-pad-y)) var(--box-pad-x, var(--cts-action-pad-x));
+}
+
+.contact-homeRail {
+  gap: var(--cts-rail-item-gap);
+  padding: var(--rail-pad-y, var(--cts-rail-pad-y)) var(--rail-pad-x, var(--cts-rail-pad-x));
+  overflow: visible;
+}
+
+.contact-homeRail span {
+  gap: var(--cts-rail-dot-gap);
+}
+
+.contact-homeRail span:nth-child(2) .contact-dot,
+.contact-dotInteractive {
+  background: var(--contact-light, #f2f0ea) !important;
+  border: 1px solid var(--contact-text, #172e45);
+}
+
+.contact-colorSample {
+  min-height: auto;
+  padding: clamp(16px, 1.8vw, 24px) clamp(20px, 2.2vw, 30px);
+}
+
+@media (max-width: 860px) {
+  .contact-homeRail {
+    gap: clamp(12px, 3vw, 18px);
+  }
+}

@@ -1,0 +1,30 @@
+/* src/pages/Work/Gemak/CIP/CIPPage.css */
+
+.gemak-cip-page {
+  --gemak-cip-main: #9a54ff;
+}
+
+.gemak-cip-page .gemak-project-bg {
+  background:
+    radial-gradient(circle at 62% 50%, rgba(154, 84, 255, 0.3), transparent 36%),
+    radial-gradient(circle at 50% 100%, rgba(132, 161, 190, 0.15), transparent 42%),
+    linear-gradient(135deg, #060d17, #101225 52%, #090f1b);
+}
+
+.gemak-cip-page .gemak-project-copy a {
+  border-color: rgba(154, 84, 255, 0.45);
+  background: rgba(154, 84, 255, 0.13);
+}
+
+.gemak-cip-page .gemak-project-hero img {
+  width: min(62vw, 980px);
+  filter:
+    drop-shadow(0 44px 82px rgba(0, 0, 0, 0.62))
+    drop-shadow(0 0 28px rgba(154, 84, 255, 0.22));
+}
+
+@media (max-width: 820px) {
+  .gemak-cip-page .gemak-project-hero img {
+    width: 112vw;
+  }
+}
