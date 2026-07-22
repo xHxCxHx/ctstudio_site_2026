@@ -12842,3 +12842,164 @@ body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-canvas canvas {
     transform: none !important;
   }
 }
+
+/* --------------------------------------------------
+   V62 TWO-CHANGE LOCK — DESKTOP TOOLS WIDTH + MOBILE DRAWER SWIPE
+   1) Full desktop only: the Tools panel is slightly wider so the seven
+      Color and Background swatches remain on one row at their current size.
+   2) Phone only: a deliberate upward swipe expands an open drawer to the
+      full viewport; one deliberate downward swipe returns it to 35svh.
+-------------------------------------------------- */
+@media (min-width: 1181px) {
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel-right {
+    width: clamp(390px, 21vw, 404px) !important;
+  }
+
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel-right .oleocon-viewer-color-row,
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel-right .oleocon-viewer-bg-visual-grid {
+    flex-wrap: nowrap !important;
+  }
+}
+
+@media (max-width: 699px) {
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel.is-open.is-mobile-expanded {
+    bottom: var(--viewer-phone-safe-bottom) !important;
+    height: calc(100svh - var(--viewer-phone-safe-bottom)) !important;
+    min-height: calc(100svh - var(--viewer-phone-safe-bottom)) !important;
+    max-height: calc(100svh - var(--viewer-phone-safe-bottom)) !important;
+    z-index: 60 !important;
+  }
+}
+
+/* --------------------------------------------------
+   V63 MOBILE-ONLY DRAWER LIMIT + AR/VR DOCK + SMOOTH OPEN
+   Scope: phones only (<=699px).
+   1) Expanded drawers stop directly below the Snapshot control.
+   2) AR/VR sit inside the closed Parts rail and fade while either drawer is open.
+   3) Drawer height and content visibility animate instead of jumping.
+-------------------------------------------------- */
+@media (max-width: 699px) {
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-page {
+    --viewer-phone-expanded-top: calc(clamp(16px, 2.1svh, 24px) + 50px);
+  }
+
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel,
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel-left,
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel-right {
+    min-height: 0 !important;
+    max-height: none !important;
+    will-change: height, bottom;
+    transition:
+      height 500ms cubic-bezier(0.16, 1, 0.3, 1),
+      bottom 500ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      opacity 220ms ease !important;
+  }
+
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel-left.is-closed,
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel-right.is-closed {
+    height: var(--viewer-phone-drawer-tab) !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel-left.is-open,
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel-right.is-open {
+    height: var(--viewer-phone-drawer-height) !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel.is-open.is-mobile-expanded {
+    bottom: var(--viewer-phone-safe-bottom) !important;
+    height: calc(100svh - var(--viewer-phone-expanded-top) - var(--viewer-phone-safe-bottom)) !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel-content,
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel-left .oleocon-viewer-panel-content,
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel-right .oleocon-viewer-panel-content {
+    transition:
+      opacity 240ms ease 90ms,
+      transform 460ms cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0ms linear 0ms !important;
+  }
+
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel.is-closed .oleocon-viewer-panel-content {
+    transform: translateY(14px) !important;
+    transition:
+      opacity 160ms ease,
+      transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0ms linear 160ms !important;
+  }
+
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel.is-open .oleocon-viewer-panel-content {
+    transform: translateY(0) !important;
+  }
+
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-header-actions .oleocon-viewer-header-immersive-button {
+    position: fixed !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: calc(54px + env(safe-area-inset-bottom, 0px) + 7px) !important;
+    z-index: 1003 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) scale(1) !important;
+    transition:
+      opacity 240ms ease,
+      transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0ms linear 0ms !important;
+  }
+
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-header-immersive-button-ar {
+    left: 10px !important;
+  }
+
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-header-immersive-button-vr {
+    left: 56px !important;
+  }
+
+  body[data-cts-route="oleocon-3d-viewer"]:has(.oleocon-viewer-panel.is-open)
+  .oleocon-viewer-header-actions .oleocon-viewer-header-immersive-button {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(10px) scale(0.94) !important;
+    transition:
+      opacity 200ms ease,
+      transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0ms linear 200ms !important;
+  }
+}
+
+@media (max-width: 600px) {
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-page {
+    --viewer-phone-expanded-top: calc(68px + env(safe-area-inset-top, 0px) + 48px);
+  }
+}
+
+
+/* --------------------------------------------------
+   V64 MOBILE-ONLY AR/VR POSITION + DELIBERATE TITLE DRAG
+   Scope: phones only (<=699px).
+   1) AR/VR sit directly above the closed Parts bar.
+   2) Expand/collapse gestures are captured only by the panel title bars.
+-------------------------------------------------- */
+@media (max-width: 699px) {
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-header-actions .oleocon-viewer-header-immersive-button {
+    bottom: calc(118px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel-toggle,
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel-left .oleocon-viewer-panel-toggle,
+  body[data-cts-route="oleocon-3d-viewer"] .oleocon-viewer-panel-right .oleocon-viewer-panel-toggle {
+    touch-action: none !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -webkit-touch-callout: none !important;
+  }
+}

@@ -1870,6 +1870,13 @@ function Section07ProductExperience({
               anywhere<span className="section07-title-dot">.</span>
             </span>
           </h1>
+          <h1 className="section07-story-title-desktop" aria-label="Inspect, Present, Anywhere.">
+            <span className="section07-story-title-line">Inspect,</span>
+            <span className="section07-story-title-line">Present,</span>
+            <span className="section07-story-title-line">
+              Anywhere<span className="section07-title-dot">.</span>
+            </span>
+          </h1>
           <h1 className="section07-story-title-laptop" aria-label="Inspect. Present.">
             <span className="section07-story-title-line">Inspect<span className="section07-title-dot">.</span></span>
             <span className="section07-story-title-line">Present<span className="section07-title-dot">.</span></span>
@@ -2080,6 +2087,7 @@ function Section07ProductExperience({
 type Section08SalesCard = {
   eyebrow: string;
   title: string;
+  shortBody: string;
   body: string;
   image: string;
 };
@@ -2088,18 +2096,21 @@ const SECTION_08_SALES_CARDS: Section08SalesCard[] = [
   {
     eyebrow: "PRESENT",
     title: "Bring the product into any room.",
+    shortBody: "Explain product clarity in every meeting.",
     body: "Use one visual system to explain complex products clearly in meetings, remote calls, and presentations. Give your team a clearer way to introduce the product, align the room, and start the conversation with confidence.",
     image: "/pages/oleocon_page/Section%2008/image2_meeting.webp",
   },
   {
     eyebrow: "PROVE",
     title: "Answer questions in the moment.",
+    shortBody: "Answer technical questions clearly, on the spot.",
     body: "Use interactive visuals in real conversations to answer questions faster, explain technical value, and build trust on the spot. Bring the product into real working conversations. Show what matters, explain it visually, and reduce friction before doubt slows the sale.",
     image: "/pages/oleocon_page/Section%2008/image3_sell.webp",
   },
   {
     eyebrow: "CLOSE",
     title: "Walk in prepared. Leave with momentum.",
+    shortBody: "Build confidence and move decisions forward.",
     body: "When the product is already easy to understand, sales conversations move faster and opportunities move forward with less friction.. When the customer already understands the product, your team can focus on decision-making.",
     image: "/pages/oleocon_page/Section%2008/iamge4_mine.webp",
   },
@@ -2167,17 +2178,23 @@ and more deals closed.`}</p>
         <div className="section08-card-row">
           {SECTION_08_SALES_CARDS.map((card) => (
             <article key={card.title} className="section08-sales-card">
-              <img
-                className="section08-card-image"
-                src={card.image}
-                alt=""
-                loading="lazy"
-                decoding="async"
-              />
+              <div className="section08-card-media">
+                <img
+                  className="section08-card-image"
+                  src={card.image}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="section08-card-hover-copy">
+                  <span>{card.body}</span>
+                </div>
+              </div>
               <div className="section08-card-copy">
                 <p>{card.eyebrow}</p>
                 <h3>{card.title}</h3>
-                <span>{card.body}</span>
+                <span className="section08-card-short">{card.shortBody}</span>
+                <span className="section08-card-full-inline">{card.body}</span>
               </div>
             </article>
           ))}
@@ -3425,6 +3442,82 @@ function Section06CatalogPanel({ style }: { style?: CSSProperties }) {
     };
   }, []);
 
+  useLayoutEffect(() => {
+    const shell = shellRef.current;
+    if (!shell) return;
+
+    const desktopQuery = window.matchMedia("(min-width: 1601px) and (min-height: 901px)");
+    const copyColumn = shell.querySelector<HTMLElement>(".section06-platform-copy-column");
+    const firstTitleLine = shell.querySelector<HTMLElement>(
+      ".section06-platform-title-wide > span:first-child",
+    );
+    const libraryEyebrow = shell.querySelector<HTMLElement>(
+      ".section06-platform-library-eyebrow",
+    );
+
+    if (!copyColumn || !firstTitleLine || !libraryEyebrow) return;
+
+    let frame = 0;
+
+    const clearDesktopMeasurements = () => {
+      shell.style.removeProperty("--section06-desktop-copy-height");
+      shell.style.removeProperty("--section06-desktop-copy-rail-width");
+      shell.style.removeProperty("--section06-desktop-library-grid-height");
+      shell.style.removeProperty("--section06-desktop-library-tile");
+      shell.style.removeProperty("--section06-desktop-library-width");
+    };
+
+    const syncDesktopGeometry = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        if (!desktopQuery.matches) {
+          clearDesktopMeasurements();
+          return;
+        }
+
+        const copyHeight = copyColumn.getBoundingClientRect().height;
+        const titleRange = document.createRange();
+        titleRange.selectNodeContents(firstTitleLine);
+        const copyRailWidth = titleRange.getBoundingClientRect().width;
+        const eyebrowHeight = libraryEyebrow.getBoundingClientRect().height;
+        const libraryGap = 10;
+        const addMoreHeight = 62;
+        const libraryGridHeight = Math.max(0, copyHeight - eyebrowHeight - libraryGap);
+        const tileSize = Math.max(0, (libraryGridHeight - addMoreHeight - libraryGap * 5) / 5);
+        const libraryWidth = tileSize * 2 + libraryGap;
+
+        shell.style.setProperty("--section06-desktop-copy-height", `${Math.round(copyHeight)}px`);
+        shell.style.setProperty("--section06-desktop-copy-rail-width", `${Math.round(copyRailWidth)}px`);
+        shell.style.setProperty(
+          "--section06-desktop-library-grid-height",
+          `${Math.round(libraryGridHeight)}px`,
+        );
+        shell.style.setProperty("--section06-desktop-library-tile", `${Math.round(tileSize)}px`);
+        shell.style.setProperty("--section06-desktop-library-width", `${Math.round(libraryWidth)}px`);
+      });
+    };
+
+    const resizeObserver = new ResizeObserver(syncDesktopGeometry);
+    resizeObserver.observe(shell);
+    resizeObserver.observe(copyColumn);
+    resizeObserver.observe(firstTitleLine);
+    resizeObserver.observe(libraryEyebrow);
+
+    const handleDesktopQueryChange = () => syncDesktopGeometry();
+    desktopQuery.addEventListener("change", handleDesktopQueryChange);
+    window.addEventListener("resize", syncDesktopGeometry, { passive: true });
+    void document.fonts?.ready.then(syncDesktopGeometry);
+    syncDesktopGeometry();
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      resizeObserver.disconnect();
+      desktopQuery.removeEventListener("change", handleDesktopQueryChange);
+      window.removeEventListener("resize", syncDesktopGeometry);
+      clearDesktopMeasurements();
+    };
+  }, []);
+
   return (
     <div ref={shellRef} className="section06-platform-shell" style={style}>
       <div className="section06-platform-panel">
@@ -3441,9 +3534,9 @@ function Section06CatalogPanel({ style }: { style?: CSSProperties }) {
               >
                 <span className="section06-platform-title-wide" aria-hidden="true">
                   <span>One model system.</span>
-                  <span>A whole product library</span>
+                  <span>A whole product</span>
                   <span>
-                    ready to travel<i className="section06-platform-title-dot">.</i>
+                    library ready to travel<i className="section06-platform-title-dot">.</i>
                   </span>
                 </span>
 

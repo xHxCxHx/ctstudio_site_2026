@@ -103,6 +103,7 @@ type WorkProject = {
   name: string;
   screenLabel: string;
   selectorDescription?: string;
+  selectorCompactDescription?: string;
   posterUrl?: string;
   mediaUrl?: string;
   href?: string;
@@ -149,6 +150,7 @@ const WORK_PROJECTS: WorkProject[] = [
     name: "GEMAK",
     screenLabel: "GEMAK",
     selectorDescription: "Custom 3D application and visual explainers that make complex machinery and its operating process easy to understand.",
+    selectorCompactDescription: "3D applications and visual explainers for complex machinery.",
     posterUrl: "/pages/work_page/Gemak Glass Poster.webp",
     mediaUrl: "/pages/work_page/Gemak Media Card.webp",
     href: "/work/Gemak",
@@ -172,6 +174,7 @@ const WORK_PROJECTS: WorkProject[] = [
     name: "OLEOCON",
     screenLabel: "OLEOCON",
     selectorDescription: "A digital library of every product model, with a detailed 3D viewer and clear video explainers for every system.",
+    selectorCompactDescription: "A 3D product library with detailed viewers and video explainers.",
     posterUrl: "/pages/work_page/Oleocon Glass Poster.webp",
     mediaUrl: "/pages/work_page/Oleocon Media Card.webp",
     href: "/work/Oleocon",
@@ -197,6 +200,7 @@ const WORK_PROJECTS: WorkProject[] = [
     name: "AKIS",
     screenLabel: "AKIS",
     selectorDescription: "A self-service product asset library with video explainers and an assembly training application for customers and teams.",
+    selectorCompactDescription: "Product assets, video explainers, and assembly training.",
     posterUrl: "/pages/work_page/Akis Glass Poster.webp",
     mediaUrl: "/pages/work_page/Akis Media Card.webp",
     accent: "#ffad3d",
@@ -219,6 +223,7 @@ const WORK_PROJECTS: WorkProject[] = [
     name: "ALLSTAR",
     screenLabel: "ALLSTAR",
     selectorDescription: "A large 3D education library combining animated lessons, virtual production, VFX, and field shoots for complex exam topics.",
+    selectorCompactDescription: "Animated lessons, VFX, virtual production, and field shoots.",
     posterUrl: "/pages/work_page/Allstar Glass Poster.webp",
     mediaUrl: "/pages/work_page/Allstar Media Card.webp",
     accent: "#ff4fd8",
@@ -241,6 +246,7 @@ const WORK_PROJECTS: WorkProject[] = [
     name: "CAYIROVA",
     screenLabel: "CAYIROVA",
     selectorDescription: "Exhibition video explainers and a 3D sales application for clearer meetings, stronger presentations, and better results.",
+    selectorCompactDescription: "Video explainers and a 3D sales application.",
     posterUrl: "/pages/work_page/Cayirova Glass Poster.webp",
     mediaUrl: "/pages/work_page/Cayirova Media Card.webp",
     accent: "#35df72",
@@ -263,6 +269,7 @@ const WORK_PROJECTS: WorkProject[] = [
     name: "CIMUKA",
     screenLabel: "CIMUKA",
     selectorDescription: "A large parts asset library with sales support, assembly guides, video explainers, and catalog-ready product visuals.",
+    selectorCompactDescription: "Parts assets, assembly guides, explainers, and product visuals.",
     posterUrl: "/pages/work_page/Cimuka Glass Poster.webp",
     mediaUrl: "/pages/work_page/Cimuka Media Card.webp",
     accent: "#ff3038",
@@ -5352,8 +5359,11 @@ function ProjectSelector({
                   <span className="work-project-card__copy">
                     <WorkProjectTextMaterial />
                     <strong>{project.name}</strong>
-                    <small className="work-project-card__description">
+                    <small className="work-project-card__description work-project-card__description--full">
                       {project.selectorDescription}
+                    </small>
+                    <small className="work-project-card__description work-project-card__description--compact">
+                      {project.selectorCompactDescription ?? project.selectorDescription}
                     </small>
                     {project.href ? (
                       <a

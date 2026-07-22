@@ -746,6 +746,10 @@ html.work-page-intro-active.work-page-intro-ui-visible .site-header {
     transform 280ms ease;
 }
 
+.work-project-card__description--compact {
+  display: none;
+}
+
 .work-project-card__action {
   position: absolute;
   z-index: 3;
@@ -930,6 +934,10 @@ html.work-page-intro-active.work-page-intro-ui-visible .site-header {
     padding: 0;
   }
 
+  .work-project-card--active {
+    --work-card-media-share: 36%;
+  }
+
   .work-project-card__number {
     top: 10px;
     left: 11px;
@@ -963,9 +971,18 @@ html.work-page-intro-active.work-page-intro-ui-visible .site-header {
 
   .work-project-card__description {
     top: 12px;
-    right: 15px;
-    left: 15px;
+    right: 12px;
+    left: 12px;
     font-size: 9px;
+    line-height: 1.35;
+  }
+
+  .work-project-card__description--full {
+    display: none;
+  }
+
+  .work-project-card__description--compact {
+    display: block;
   }
 
   .work-project-card__action {
@@ -981,7 +998,7 @@ html.work-page-intro-active.work-page-intro-ui-visible .site-header {
   }
 
   .work-project-card--active .work-project-card__description {
-    max-height: 54px;
+    max-height: 42px;
   }
 
   .work-camera-control {

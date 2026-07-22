@@ -30310,3 +30310,839 @@ body .oleocon-page .section08-wide-panel h2 > .section08-wide-copy-laptop {
     );
   }
 }
+
+/* --------------------------------------------------
+   SECTION 06 — DESKTOP LIBRARY SCALE + CTA BASELINE V91
+   Scope: Section 06 only, full desktop only.
+   Enlarges the complete right library toward the unused center gap while
+   preserving the left copy geometry and keeping ADD MORE on the CTA baseline.
+-------------------------------------------------- */
+@media (min-width: 1601px) and (min-height: 901px) {
+  body .oleocon-page #digital-catalog.oleocon-stage-section .section06-platform-grid {
+    align-items: stretch !important;
+  }
+
+  body .oleocon-page #digital-catalog.oleocon-stage-section .section06-platform-library-column {
+    width: calc(100% + 44px) !important;
+    min-width: calc(100% + 44px) !important;
+    max-width: calc(100% + 44px) !important;
+    height: 100% !important;
+    align-self: stretch !important;
+    transform: translateX(-44px) !important;
+    grid-template-rows: auto minmax(0, 1fr) !important;
+  }
+
+  body .oleocon-page #digital-catalog.oleocon-stage-section .section06-platform-library-grid {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: repeat(5, auto) 62px !important;
+    align-content: space-between !important;
+    justify-content: stretch !important;
+  }
+
+  body .oleocon-page #digital-catalog.oleocon-stage-section .section06-platform-library-card {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+  }
+
+  body .oleocon-page #digital-catalog.oleocon-stage-section .section06-platform-library-more-card {
+    height: 62px !important;
+    min-height: 62px !important;
+    max-height: 62px !important;
+    align-self: end !important;
+  }
+}
+
+/* --------------------------------------------------
+   SECTION 07 — DESKTOP RIGHT IMAGE ASPECT LOCK V104
+   Scope: Section 07 right cards, full desktop only.
+   The cards follow the 16:9 source-image ratio so contain-fit images use the
+   full frame without cropping, zooming, deformation, or side letterboxing.
+-------------------------------------------------- */
+@media (min-width: 1601px) and (min-height: 901px) {
+  body .oleocon-page #specs.oleocon-stage-specs .section07-right-column {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    align-self: end !important;
+  }
+
+  body .oleocon-page #specs.oleocon-stage-specs .section07-device-card-stack {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    grid-template-rows: repeat(3, auto) !important;
+    align-content: end !important;
+  }
+
+  body .oleocon-page #specs.oleocon-stage-section .section07-device-card-stack[data-section07-device-set] .section07-device-set-card,
+  body .oleocon-page #specs.oleocon-stage-section.is-active .section07-device-card-stack[data-section07-device-set] .section07-device-set-card,
+  body .oleocon-page #specs.oleocon-stage-specs .section07-device-card,
+  body .oleocon-page #specs.oleocon-stage-specs .section07-device-card.is-active {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: 16 / 9 !important;
+    overflow: hidden !important;
+  }
+
+  body .oleocon-page #specs.oleocon-stage-specs .section07-device-image,
+  body .oleocon-page #specs.oleocon-stage-specs .section07-device-image-layer,
+  body .oleocon-page #specs.oleocon-stage-specs .section07-device-mobile .section07-device-image,
+  body .oleocon-page #specs.oleocon-stage-specs .section07-device-mobile .section07-device-image-layer,
+  body .oleocon-page #specs.oleocon-stage-specs .section07-device-expo .section07-device-image,
+  body .oleocon-page #specs.oleocon-stage-specs .section07-device-expo .section07-device-image-layer {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    transform: none !important;
+  }
+}
+
+/* --------------------------------------------------
+   SECTION 07 — DESKTOP LEFT EXTENSION + COPY WIDTH V105
+   Scope: Section 07 right cards, full desktop only.
+   Extends the three cards exactly 49px from their left edge while preserving
+   the existing right edge, image fit, aspect ratio, height, and vertical layout.
+-------------------------------------------------- */
+@media (min-width: 1601px) and (min-height: 901px) {
+  body .oleocon-page #specs.oleocon-stage-specs {
+    --section07-desktop-card-left-extension-v105: 49px;
+    --section07-desktop-right-copy-width: 220px;
+  }
+
+  body .oleocon-page #specs.oleocon-stage-specs .section07-device-card-stack {
+    width: calc(100% + var(--section07-desktop-card-left-extension-v105)) !important;
+    min-width: calc(100% + var(--section07-desktop-card-left-extension-v105)) !important;
+    max-width: none !important;
+    margin-left: calc(-1 * var(--section07-desktop-card-left-extension-v105)) !important;
+    margin-right: 0 !important;
+  }
+
+  body .oleocon-page #specs.oleocon-stage-specs .section07-device-card-stack[data-section07-device-set] .section07-device-set-card .section07-device-copy,
+  body .oleocon-page #specs.oleocon-stage-specs .section07-device-card .section07-device-copy {
+    width: var(--section07-desktop-right-copy-width) !important;
+    min-width: var(--section07-desktop-right-copy-width) !important;
+    max-width: var(--section07-desktop-right-copy-width) !important;
+  }
+}
+
+
+/* --------------------------------------------------
+   SECTION 07 — DESKTOP LEFT STORY + HEADER CLEANUP V106
+   Scope: Section 07, full desktop only.
+   - removes the right-column header box
+   - uses the dedicated three-line desktop title
+   - keeps the autoplay panel in its approved position
+   - restores the index and eyebrow visibility
+-------------------------------------------------- */
+body .oleocon-page #specs.oleocon-stage-specs .section07-story-title-desktop {
+  display: none !important;
+}
+
+@media (min-width: 1601px) and (min-height: 901px) {
+  body .oleocon-page #specs.oleocon-stage-specs .section07-right-header {
+    display: none !important;
+  }
+
+  body .oleocon-page #specs.oleocon-stage-specs .section07-story-title-default {
+    display: none !important;
+  }
+
+  body .oleocon-page #specs.oleocon-stage-specs .section07-story-title-desktop {
+    display: block !important;
+    width: max-content !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  body .oleocon-page #specs.oleocon-stage-specs .section07-story-title-desktop .section07-story-title-line {
+    display: block !important;
+    width: max-content !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  body .oleocon-page #specs.oleocon-stage-specs .section07-story-index {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  body .oleocon-page #specs.oleocon-stage-specs .section07-story-eyebrow {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
+
+/* --------------------------------------------------
+   SECTION 06 — RESTORE LOCKED DESKTOP RIGHT ALIGNMENT V107
+   Scope: Section 06, full desktop only.
+   Restores the approved V96/V100 geometry after the Section 07 edit and keeps
+   the complete library column anchored to the panel's right edge.
+-------------------------------------------------- */
+@media (min-width: 1601px) and (min-height: 901px) {
+  body .oleocon-page #digital-catalog.oleocon-stage-section .section06-platform-grid {
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    gap: clamp(28px, 2.6vw, 52px) !important;
+    align-items: start !important;
+  }
+
+  body .oleocon-page #digital-catalog.oleocon-stage-section .section06-platform-copy-column {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    display: grid !important;
+    grid-template-rows: auto auto auto !important;
+    align-content: start !important;
+  }
+
+  body .oleocon-page #digital-catalog.oleocon-stage-section .section06-platform-library-column {
+    width: var(--section06-desktop-library-width) !important;
+    min-width: var(--section06-desktop-library-width) !important;
+    max-width: var(--section06-desktop-library-width) !important;
+    height: var(--section06-desktop-copy-height) !important;
+    min-height: var(--section06-desktop-copy-height) !important;
+    max-height: var(--section06-desktop-copy-height) !important;
+    justify-self: end !important;
+    align-self: start !important;
+    display: grid !important;
+    grid-template-rows: auto minmax(0, 1fr) !important;
+    gap: 10px !important;
+    margin: 0 0 0 auto !important;
+    transform: none !important;
+    overflow: hidden !important;
+  }
+
+  body .oleocon-page #digital-catalog.oleocon-stage-section .section06-platform-library-eyebrow {
+    margin: 0 !important;
+  }
+
+  body .oleocon-page #digital-catalog.oleocon-stage-section .section06-platform-library-grid {
+    width: var(--section06-desktop-library-width) !important;
+    min-width: var(--section06-desktop-library-width) !important;
+    max-width: var(--section06-desktop-library-width) !important;
+    height: var(--section06-desktop-library-grid-height) !important;
+    min-height: var(--section06-desktop-library-grid-height) !important;
+    max-height: var(--section06-desktop-library-grid-height) !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, var(--section06-desktop-library-tile)) !important;
+    grid-template-rows: repeat(5, var(--section06-desktop-library-tile)) 62px !important;
+    gap: 10px !important;
+    row-gap: 10px !important;
+    column-gap: 10px !important;
+    align-content: start !important;
+    justify-content: end !important;
+    align-items: stretch !important;
+    justify-items: stretch !important;
+    overflow: hidden !important;
+  }
+
+  body .oleocon-page #digital-catalog.oleocon-stage-section .section06-platform-library-card {
+    width: var(--section06-desktop-library-tile) !important;
+    min-width: var(--section06-desktop-library-tile) !important;
+    max-width: var(--section06-desktop-library-tile) !important;
+    height: var(--section06-desktop-library-tile) !important;
+    min-height: var(--section06-desktop-library-tile) !important;
+    max-height: var(--section06-desktop-library-tile) !important;
+    aspect-ratio: 1 / 1 !important;
+    display: grid !important;
+    place-items: center !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  body .oleocon-page #digital-catalog.oleocon-stage-section .section06-platform-library-card > img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    transform: none !important;
+  }
+
+  body .oleocon-page #digital-catalog.oleocon-stage-section .section06-platform-library-more-card {
+    grid-column: 1 / -1 !important;
+    width: var(--section06-desktop-library-width) !important;
+    min-width: var(--section06-desktop-library-width) !important;
+    max-width: var(--section06-desktop-library-width) !important;
+    height: 62px !important;
+    min-height: 62px !important;
+    max-height: 62px !important;
+    margin: 0 !important;
+    align-self: start !important;
+  }
+
+  body .oleocon-page[data-laptop="false"] #digital-catalog.oleocon-stage-section .section06-platform-shell {
+    --copy-y: -28px !important;
+  }
+}
+
+/* --------------------------------------------------
+   SECTION 08 — DESKTOP HERO / CARD COPY / WIDE PANEL V108
+   Scope lock: Section 08 full desktop only.
+   Sections 06 and 07, plus laptop/tablet/mobile, remain untouched.
+-------------------------------------------------- */
+body .oleocon-page .section08-card-media {
+  display: contents;
+}
+
+body .oleocon-page .section08-card-hover-copy,
+body .oleocon-page .section08-card-short {
+  display: none !important;
+}
+
+body .oleocon-page .section08-card-full-inline {
+  display: block !important;
+}
+
+@media (min-width: 1601px) and (min-height: 901px) {
+  /* Hero answer copy: preserve X position; enlarge and center only on Y. */
+  body .oleocon-page #materials.oleocon-stage-materials .section08-hero-answer-box {
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translateY(-50%) !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-hero-answer-box h2 {
+    font-size: clamp(28px, 1.62vw, 34px) !important;
+    font-weight: 700 !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-hero-answer-box ul {
+    gap: clamp(8px, 0.82svh, 12px) !important;
+    margin-top: clamp(18px, 1.9svh, 26px) !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-hero-answer-box li {
+    font-size: clamp(15px, 0.82vw, 18px) !important;
+    font-weight: 500 !important;
+    line-height: 1.28 !important;
+  }
+
+  /* Three cards: compact summary in the right box; full body appears over the image on hover. */
+  body .oleocon-page #materials.oleocon-stage-materials .section08-sales-card {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) clamp(208px, 13vw, 244px) !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-card-media {
+    position: relative !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    display: block !important;
+    overflow: hidden !important;
+    isolation: isolate !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-card-media .section08-card-image {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+    transition: filter 300ms var(--oleocon-ease) !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-card-hover-copy {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 2 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: clamp(22px, 1.8vw, 34px) !important;
+    background: linear-gradient(90deg, rgba(3, 4, 3, 0.94), rgba(3, 4, 3, 0.72) 68%, rgba(3, 4, 3, 0.34)) !important;
+    opacity: 0 !important;
+    transform: translate3d(0, 10px, 0) !important;
+    pointer-events: none !important;
+    transition: opacity 300ms var(--oleocon-ease), transform 300ms var(--oleocon-ease) !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-card-hover-copy span {
+    display: block !important;
+    width: min(44ch, 88%) !important;
+    margin: 0 !important;
+    color: color-mix(in srgb, var(--oleocon-text) 90%, transparent) !important;
+    font-size: clamp(15px, 0.82vw, 18px) !important;
+    font-weight: var(--cts-oleocon-type2-body-font-weight) !important;
+    line-height: 1.42 !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-card-media:hover .section08-card-image {
+    filter: brightness(0.38) saturate(0.82) !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-card-media:hover .section08-card-hover-copy {
+    opacity: 1 !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-card-copy {
+    justify-content: center !important;
+    padding: clamp(16px, 1.25vw, 22px) !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-card-copy p {
+    color: var(--oleocon-green) !important;
+    font-size: clamp(12px, 0.68vw, 14px) !important;
+    font-weight: 900 !important;
+    line-height: 1.1 !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-card-copy h3 {
+    margin-top: clamp(7px, 0.72svh, 10px) !important;
+    max-width: 20ch !important;
+    font-size: clamp(17px, 0.95vw, 20px) !important;
+    font-weight: 700 !important;
+    line-height: 1.12 !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-card-short {
+    display: block !important;
+    margin-top: clamp(8px, 0.82svh, 11px) !important;
+    max-width: 24ch !important;
+    color: color-mix(in srgb, var(--oleocon-text) 72%, transparent) !important;
+    font-size: clamp(13px, 0.72vw, 15px) !important;
+    font-weight: 400 !important;
+    line-height: 1.28 !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-card-full-inline {
+    display: none !important;
+  }
+
+  /* Bottom wide panel: larger/heavier green kicker, smaller support copy and CTA. */
+  body .oleocon-page #materials.oleocon-stage-materials .section08-wide-panel {
+    padding-left: clamp(22px, 1.8vw, 34px) !important;
+    padding-right: clamp(22px, 1.8vw, 34px) !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-wide-panel p {
+    font-size: clamp(16px, 0.92vw, 19px) !important;
+    font-weight: 900 !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.01em !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-wide-panel h2 {
+    margin-top: 4px !important;
+    font-size: clamp(13px, 0.74vw, 15px) !important;
+    font-weight: 500 !important;
+    line-height: 1.22 !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-wide-panel a {
+    min-height: 44px !important;
+    padding: 0 clamp(14px, 1.05vw, 20px) !important;
+    font-size: clamp(11px, 0.62vw, 13px) !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+  }
+}
+
+/* --------------------------------------------------
+   SECTION 08 DESKTOP FINAL LOCK V110
+   Scope: Section 08 desktop only.
+   - removes the third hero-title line
+   - keeps the bottom white statement on one larger line
+-------------------------------------------------- */
+@media (min-width: 1601px) and (min-height: 901px) {
+  body .oleocon-page #materials.oleocon-stage-materials .section08-copy-panel h1 > span:nth-child(3) {
+    display: none !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-wide-panel > div {
+    flex: 1 1 auto !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-wide-panel h2 {
+    width: max-content !important;
+    max-width: none !important;
+    margin-top: 4px !important;
+    font-size: clamp(17px, 0.92vw, 19px) !important;
+    font-weight: 500 !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.015em !important;
+    white-space: nowrap !important;
+    text-wrap: nowrap !important;
+    overflow: visible !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-wide-panel h2 > .section08-wide-copy-default,
+  body .oleocon-page #materials.oleocon-stage-materials .section08-wide-panel h2 > .section08-wide-copy-default > span {
+    display: inline !important;
+    white-space: nowrap !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-wide-panel a {
+    flex: 0 0 auto !important;
+    margin-left: clamp(18px, 1.5vw, 30px) !important;
+  }
+}
+
+/* --------------------------------------------------
+   SECTION 08 DESKTOP CARD ORDER LOCK V112
+   Scope: Section 08 full desktop only.
+   Text panel on the left, image panel on the right.
+-------------------------------------------------- */
+@media (min-width: 1601px) and (min-height: 901px) {
+  body .oleocon-page #materials.oleocon-stage-materials .section08-sales-card {
+    grid-template-columns: clamp(208px, 13vw, 244px) minmax(0, 1fr) !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-card-copy {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+  }
+
+  body .oleocon-page #materials.oleocon-stage-materials .section08-card-media {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+  }
+}
+
+/* --------------------------------------------------
+   SECTION 09 DESKTOP TITLE + SUPPORT + HERO POSITION V114
+   Scope: Section 09 full desktop only.
+   Section 08 and the approved Section 09 box geometry remain locked.
+-------------------------------------------------- */
+@media (min-width: 1601px) and (min-height: 901px) {
+  body .oleocon-page #final.oleocon-stage-section {
+    --section09-desktop-hero-height-v114: 55%;
+    --section09-desktop-support-height-v114: clamp(96px, 10.8svh, 118px);
+    --section09-desktop-lower-gap-v114: clamp(10px, 1svh, 14px);
+    --section09-future-panel-y: 68% !important;
+    grid-template-rows: var(--section09-desktop-hero-height-v114) minmax(0, 1fr) !important;
+  }
+
+  /* Match the approved Oleocon index and eyebrow hierarchy. */
+  body .oleocon-page #final.oleocon-stage-section .section09-story-index {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin: 0 !important;
+    color: color-mix(in srgb, var(--oleocon-text) 45%, transparent) !important;
+    text-transform: uppercase !important;
+    font-size: var(--cts-oleocon-type1-index-eyebrow-font-size) !important;
+    font-weight: var(--cts-oleocon-type1-index-eyebrow-font-weight) !important;
+    line-height: var(--cts-oleocon-type1-index-eyebrow-line-height) !important;
+    letter-spacing: var(--cts-oleocon-type1-index-eyebrow-letter-spacing) !important;
+    word-spacing: var(--cts-oleocon-type1-index-eyebrow-word-spacing) !important;
+  }
+
+  body .oleocon-page #final.oleocon-stage-section .section09-story-index i {
+    display: block !important;
+    width: 48px !important;
+    height: 1px !important;
+    flex: 0 0 48px !important;
+    background: linear-gradient(90deg, var(--oleocon-green), color-mix(in srgb, var(--oleocon-text) 28%, transparent)) !important;
+  }
+
+  body .oleocon-page #final.oleocon-stage-section .section09-story-eyebrow {
+    margin: 0 !important;
+    color: var(--oleocon-green) !important;
+    text-transform: uppercase !important;
+    font-size: var(--cts-oleocon-type1-index-eyebrow-font-size) !important;
+    font-weight: var(--cts-oleocon-type1-index-eyebrow-font-weight) !important;
+    line-height: var(--cts-oleocon-type1-index-eyebrow-line-height) !important;
+    letter-spacing: var(--cts-oleocon-type1-index-eyebrow-letter-spacing) !important;
+    word-spacing: var(--cts-oleocon-type1-index-eyebrow-word-spacing) !important;
+  }
+
+  /* Lift only the rotating copy on the right side of the hero image. */
+  body .oleocon-page #final.oleocon-stage-section .section09-future-panel {
+    top: var(--section09-future-panel-y) !important;
+    bottom: auto !important;
+    transform: translateY(-50%) !important;
+  }
+
+  /* Showcase titles only: one line, green, and larger. Card geometry is untouched. */
+  body .oleocon-page #final.oleocon-stage-section .section09-showcase-copy h3 {
+    display: block !important;
+    width: max-content !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    color: var(--oleocon-green) !important;
+    font-family: var(--cts-oleocon-font-family) !important;
+    font-size: clamp(18px, 0.98vw, 20px) !important;
+    font-weight: 900 !important;
+    line-height: 1.06 !important;
+    letter-spacing: -0.02em !important;
+    word-spacing: 0 !important;
+    white-space: nowrap !important;
+    text-align: left !important;
+  }
+
+  /* Keep the approved lower group inside Section 09. */
+  body .oleocon-page #final.oleocon-stage-section .section09-bottom-showcase {
+    min-height: 0 !important;
+    height: 100% !important;
+    grid-template-rows: minmax(0, 1fr) var(--section09-desktop-support-height-v114) !important;
+    gap: var(--section09-desktop-lower-gap-v114) !important;
+    padding-bottom: clamp(14px, 1.6svh, 20px) !important;
+    overflow: hidden !important;
+  }
+
+  /* Bottom support strip: larger white copy and larger icons, same outer box. */
+  body .oleocon-page #final.oleocon-stage-section .section09-support-row {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  body .oleocon-page #final.oleocon-stage-section .section09-support-card {
+    min-width: 0 !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    grid-template-columns: 38px minmax(0, 1fr) !important;
+    column-gap: clamp(10px, 0.72vw, 14px) !important;
+    padding: clamp(10px, 1svh, 13px) clamp(10px, 0.78vw, 15px) !important;
+    align-items: center !important;
+    overflow: hidden !important;
+  }
+
+  body .oleocon-page #final.oleocon-stage-section .section09-support-icon {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  body .oleocon-page #final.oleocon-stage-section .section09-support-copy {
+    min-width: 0 !important;
+    display: grid !important;
+    align-content: center !important;
+    gap: 4px !important;
+    overflow: hidden !important;
+  }
+
+  body .oleocon-page #final.oleocon-stage-section .section09-support-copy h3 {
+    margin: 0 !important;
+    color: var(--oleocon-green) !important;
+    font-size: var(--cts-oleocon-type1-chip-font-size) !important;
+    font-weight: var(--cts-oleocon-type1-chip-font-weight) !important;
+    line-height: 1.12 !important;
+    letter-spacing: var(--cts-oleocon-type1-chip-letter-spacing) !important;
+    word-spacing: var(--cts-oleocon-type1-chip-word-spacing) !important;
+    white-space: normal !important;
+    overflow-wrap: normal !important;
+  }
+
+  body .oleocon-page #final.oleocon-stage-section .section09-support-copy p {
+    margin: 0 !important;
+    color: color-mix(in srgb, var(--oleocon-text) 82%, transparent) !important;
+    font-size: clamp(14px, 0.8vw, 16px) !important;
+    font-weight: var(--cts-oleocon-type2-body-font-weight) !important;
+    line-height: 1.18 !important;
+    letter-spacing: var(--cts-oleocon-type2-body-letter-spacing) !important;
+    word-spacing: var(--cts-oleocon-type2-body-word-spacing) !important;
+    white-space: pre-line !important;
+    overflow-wrap: normal !important;
+  }
+}
+
+/* --------------------------------------------------
+   SECTION 09 DESKTOP SHOWCASE LOWER ALIGNMENT V115
+   Scope: Section 09 full desktop only.
+   Moves the existing showcase image cards into the unused space below them.
+   Card size, hero geometry, support strip, typography, and all locked sections stay unchanged.
+-------------------------------------------------- */
+@media (min-width: 1601px) and (min-height: 901px) {
+  body .oleocon-page #final.oleocon-stage-section .section09-card-grid {
+    align-content: end !important;
+    align-items: end !important;
+  }
+
+  body .oleocon-page #final.oleocon-stage-section .section09-showcase-card {
+    align-self: end !important;
+  }
+}
+
+/* --------------------------------------------------
+   SECTION 10 — DESKTOP TEXT + CTA FIT LOCK V116
+   Scope: Section 10 full desktop only.
+   Keeps the approved card geometry and background untouched.
+-------------------------------------------------- */
+@media (min-width: 1601px) and (min-height: 901px) {
+  body .oleocon-page #after.oleocon-section-10-fullpage .oleocon-section10-choice {
+    overflow: hidden !important;
+  }
+
+  body .oleocon-page #after.oleocon-section-10-fullpage .oleocon-section10-choice-copy {
+    position: static !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    display: grid !important;
+    align-content: start !important;
+    gap: 8px !important;
+    overflow: visible !important;
+    transform: none !important;
+    translate: none !important;
+    opacity: 1 !important;
+  }
+
+  body .oleocon-page #after.oleocon-section-10-fullpage .oleocon-section10-choice-kicker {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    font-size: var(--cts-oleocon-type1-index-eyebrow-font-size) !important;
+    font-weight: var(--cts-oleocon-type1-index-eyebrow-font-weight) !important;
+    line-height: var(--cts-oleocon-type1-index-eyebrow-line-height) !important;
+    letter-spacing: var(--cts-oleocon-type1-index-eyebrow-letter-spacing) !important;
+    word-spacing: var(--cts-oleocon-type1-index-eyebrow-word-spacing) !important;
+    white-space: nowrap !important;
+    transform: none !important;
+    translate: none !important;
+    opacity: 1 !important;
+  }
+
+  body .oleocon-page #after.oleocon-section-10-fullpage .oleocon-section10-choice strong {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    color: var(--oleocon-text) !important;
+    font-family: var(--cts-oleocon-font-family) !important;
+    font-size: calc(var(--cts-oleocon-type2-title-font-size) * 0.76) !important;
+    font-weight: var(--cts-oleocon-type2-title-font-weight) !important;
+    line-height: 0.96 !important;
+    letter-spacing: -0.035em !important;
+    word-spacing: 0 !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    hyphens: none !important;
+    text-wrap: balance !important;
+    transform: none !important;
+    translate: none !important;
+    opacity: 1 !important;
+  }
+
+  body .oleocon-page #after.oleocon-section-10-fullpage .oleocon-section10-choice small {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    color: color-mix(in srgb, var(--oleocon-text) 80%, transparent) !important;
+    font-family: var(--cts-oleocon-font-family) !important;
+    font-size: var(--cts-oleocon-type2-body-font-size) !important;
+    font-weight: var(--cts-oleocon-type2-body-font-weight) !important;
+    line-height: 1.28 !important;
+    letter-spacing: var(--cts-oleocon-type2-body-letter-spacing) !important;
+    word-spacing: var(--cts-oleocon-type2-body-word-spacing) !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    transform: none !important;
+    translate: none !important;
+    opacity: 1 !important;
+  }
+
+  body .oleocon-page #after.oleocon-section-10-fullpage .oleocon-section10-choice-button {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    min-height: 44px !important;
+    margin-top: auto !important;
+    padding: 0 12px !important;
+    font-size: var(--cts-oleocon-type1-chip-font-size) !important;
+    font-weight: var(--cts-oleocon-type1-chip-font-weight) !important;
+    line-height: var(--cts-oleocon-type1-chip-line-height) !important;
+    letter-spacing: var(--cts-oleocon-type1-chip-letter-spacing) !important;
+    word-spacing: var(--cts-oleocon-type1-chip-word-spacing) !important;
+    white-space: nowrap !important;
+    transform: none !important;
+    translate: none !important;
+  }
+}
+
+/* --------------------------------------------------
+   SECTION 10 — DESKTOP LARGER CARDS + CTA ALIGNMENT V117
+   Scope: Section 10 full desktop only.
+   Enlarges both access cards and locks both CTA buttons to the same baseline.
+-------------------------------------------------- */
+@media (min-width: 1601px) and (min-height: 901px) {
+  body .oleocon-page #after.oleocon-section-10-fullpage .oleocon-section10-choice-panel {
+    grid-template-columns: repeat(2, 300px) !important;
+    gap: 20px !important;
+    align-items: stretch !important;
+  }
+
+  body .oleocon-page #after.oleocon-section-10-fullpage .oleocon-section10-choice {
+    width: 300px !important;
+    min-width: 300px !important;
+    max-width: 300px !important;
+    height: 360px !important;
+    min-height: 360px !important;
+    max-height: 360px !important;
+    display: grid !important;
+    grid-template-rows: minmax(0, 1fr) auto !important;
+    align-content: stretch !important;
+    align-items: stretch !important;
+    gap: 22px !important;
+    padding: 28px 26px !important;
+  }
+
+  body .oleocon-page #after.oleocon-section-10-fullpage .oleocon-section10-choice-image {
+    display: none !important;
+  }
+
+  body .oleocon-page #after.oleocon-section-10-fullpage .oleocon-section10-choice-copy {
+    align-content: start !important;
+    gap: 12px !important;
+  }
+
+  body .oleocon-page #after.oleocon-section-10-fullpage .oleocon-section10-choice-kicker {
+    font-size: 14px !important;
+  }
+
+  body .oleocon-page #after.oleocon-section-10-fullpage .oleocon-section10-choice strong {
+    font-size: 42px !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.035em !important;
+    text-wrap: balance !important;
+  }
+
+  body .oleocon-page #after.oleocon-section-10-fullpage .oleocon-section10-choice small {
+    font-size: 17px !important;
+    line-height: 1.34 !important;
+  }
+
+  body .oleocon-page #after.oleocon-section-10-fullpage .oleocon-section10-choice-button {
+    align-self: end !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: 58px !important;
+    min-height: 58px !important;
+    max-height: 58px !important;
+    margin: 0 !important;
+    padding: 0 18px !important;
+    font-size: 14px !important;
+  }
+}
+

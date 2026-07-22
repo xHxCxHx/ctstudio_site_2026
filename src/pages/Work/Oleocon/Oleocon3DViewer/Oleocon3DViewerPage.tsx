@@ -1,5 +1,5 @@
 // src/pages/Work/Oleocon/Oleocon3DViewer/Oleocon3DViewerPage.tsx
-import { type CSSProperties, type FormEvent, type PointerEvent, type WheelEvent, useEffect, useMemo, useRef, useState } from "react";
+import { type CSSProperties, type FormEvent, type MouseEvent, type PointerEvent, type WheelEvent, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
@@ -2194,6 +2194,24 @@ export default function Oleocon3DViewerPage() {
   const actionFutureRef = useRef<ViewerActionSnapshot[]>([]);
   const isRestoringActionRef = useRef(false);
   const autoRotateRef = useRef<AutoRotateState>({ active: false, returningToDefault: false });
+  const mobilePanelGestureRef = useRef<{
+    panel: "left" | "right" | null;
+    pointerId: number | null;
+    startX: number;
+    startY: number;
+    startTime: number;
+    panelWasOpen: boolean;
+    startedExpanded: boolean;
+  }>({
+    panel: null,
+    pointerId: null,
+    startX: 0,
+    startY: 0,
+    startTime: 0,
+    panelWasOpen: false,
+    startedExpanded: false,
+  });
+  const suppressMobilePanelToggleClickRef = useRef<"left" | "right" | null>(null);
 
   const [loadState, setLoadState] = useState("Loading Oleocon model");
   const [loadError, setLoadError] = useState("");
@@ -2215,6 +2233,7 @@ export default function Oleocon3DViewerPage() {
   const [lightingPreset, setLightingPreset] = useState<LightingPresetId>(DEFAULT_LIGHTING_PRESET);
   const [isLeftPanelOpen, setIsLeftPanelOpen] = useState(false);
   const [isRightPanelOpen, setIsRightPanelOpen] = useState(false);
+  const [mobileExpandedPanel, setMobileExpandedPanel] = useState<"left" | "right" | null>(null);
   const [isControlsOpen, setIsControlsOpen] = useState(false);
   const [isAutoRotateActive, setIsAutoRotateActive] = useState(false);
   const [isCatalogPanelOpen, setIsCatalogPanelOpen] = useState(false);
@@ -2266,6 +2285,122 @@ export default function Oleocon3DViewerPage() {
     ? (activeTourPanelIsOpen && tourCardStyleTarget === activeTourStep.target && tourCardStyleStepId === activeTourStep.id ? tourCardStyle : ({ opacity: 0 } as CSSProperties))
     : undefined;
 
+  const resetMobilePanelGesture = () => {
+    mobilePanelGestureRef.current = {
+      panel: null,
+      pointerId: null,
+      startX: 0,
+      startY: 0,
+      startTime: 0,
+      panelWasOpen: false,
+      startedExpanded: false,
+    };
+  };
+
+  const handleMobilePanelTitlePointerDown = (
+    panel: "left" | "right",
+    event: PointerEvent<HTMLButtonElement>
+  ) => {
+    if (
+      typeof window === "undefined" ||
+      !window.matchMedia("(max-width: 699px)").matches ||
+      event.pointerType === "mouse"
+    ) {
+      return;
+    }
+
+    const panelWasOpen = panel === "left" ? isLeftPanelOpen : isRightPanelOpen;
+    mobilePanelGestureRef.current = {
+      panel,
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      startTime: window.performance.now(),
+      panelWasOpen,
+      startedExpanded: mobileExpandedPanel === panel,
+    };
+
+    try {
+      event.currentTarget.setPointerCapture(event.pointerId);
+    } catch {
+      // Pointer capture can be unavailable on older mobile browsers.
+    }
+  };
+
+  const handleMobilePanelTitlePointerUp = (
+    panel: "left" | "right",
+    event: PointerEvent<HTMLButtonElement>
+  ) => {
+    const gesture = mobilePanelGestureRef.current;
+    resetMobilePanelGesture();
+
+    if (
+      gesture.panel !== panel ||
+      gesture.pointerId !== event.pointerId ||
+      typeof window === "undefined" ||
+      !window.matchMedia("(max-width: 699px)").matches
+    ) {
+      return;
+    }
+
+    const deltaX = event.clientX - gesture.startX;
+    const deltaY = event.clientY - gesture.startY;
+    const verticalDistance = Math.abs(deltaY);
+    const holdDuration = window.performance.now() - gesture.startTime;
+    const movedPastTapTolerance = verticalDistance > 14 || Math.abs(deltaX) > 14;
+
+    if (movedPastTapTolerance) {
+      suppressMobilePanelToggleClickRef.current = panel;
+    }
+
+    const isHeldVerticalDrag =
+      gesture.panelWasOpen &&
+      holdDuration >= 260 &&
+      verticalDistance >= 116 &&
+      verticalDistance > Math.abs(deltaX) * 1.5;
+
+    if (!isHeldVerticalDrag) return;
+
+    if (deltaY < 0 && !gesture.startedExpanded) {
+      setMobileExpandedPanel(panel);
+      return;
+    }
+
+    if (deltaY > 0 && gesture.startedExpanded) {
+      setMobileExpandedPanel(null);
+    }
+  };
+
+  const handleMobilePanelTitlePointerCancel = () => {
+    resetMobilePanelGesture();
+  };
+
+  const toggleViewerPanel = (panel: "left" | "right") => {
+    setMobileExpandedPanel(null);
+    resetMobilePanelGesture();
+
+    if (panel === "left") {
+      setIsLeftPanelOpen((value) => !value);
+      return;
+    }
+
+    setIsRightPanelOpen((value) => !value);
+  };
+
+  const handleViewerPanelToggleClick = (
+    panel: "left" | "right",
+    event: MouseEvent<HTMLButtonElement>
+  ) => {
+    if (suppressMobilePanelToggleClickRef.current === panel) {
+      suppressMobilePanelToggleClickRef.current = null;
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+
+    toggleViewerPanel(panel);
+  };
+
   const setExplodeImmediate = (nextExplode: number, syncReactState = false) => {
     const clampedExplode = clamp(nextExplode, 0, 1);
     explodeRef.current = clampedExplode;
@@ -2296,6 +2431,14 @@ export default function Oleocon3DViewerPage() {
     setTourStepIndex(0);
     setIsTourOpen(true);
   }, [isModelReady, loadError]);
+
+  useEffect(() => {
+    setMobileExpandedPanel((currentPanel) => {
+      if (currentPanel === "left" && !isLeftPanelOpen) return null;
+      if (currentPanel === "right" && !isRightPanelOpen) return null;
+      return currentPanel;
+    });
+  }, [isLeftPanelOpen, isRightPanelOpen]);
 
   useEffect(() => {
     if (!activeTourStep) return;
@@ -4750,7 +4893,7 @@ export default function Oleocon3DViewerPage() {
         </button>
         <button
           type="button"
-          className="oleocon-viewer-header-immersive-button"
+          className="oleocon-viewer-header-immersive-button oleocon-viewer-header-immersive-button-ar"
           onClick={() => openImmersiveAccess("ar")}
           aria-label="Open protected AR preview"
           title="AR"
@@ -4759,7 +4902,7 @@ export default function Oleocon3DViewerPage() {
         </button>
         <button
           type="button"
-          className="oleocon-viewer-header-immersive-button"
+          className="oleocon-viewer-header-immersive-button oleocon-viewer-header-immersive-button-vr"
           onClick={() => openImmersiveAccess("vr")}
           aria-label="Open protected VR preview"
           title="VR"
@@ -4946,8 +5089,18 @@ export default function Oleocon3DViewerPage() {
           </aside>
         ) : null}
 
-        <aside ref={leftPanelRef} className={`oleocon-viewer-panel oleocon-viewer-panel-left ${isLeftPanelOpen ? "is-open" : "is-closed"} ${isTourTarget("parts") ? "is-tour-target" : ""}`}>
-          <button type="button" className="oleocon-viewer-panel-toggle" onClick={() => setIsLeftPanelOpen((value) => !value)}>
+        <aside
+          ref={leftPanelRef}
+          className={`oleocon-viewer-panel oleocon-viewer-panel-left ${isLeftPanelOpen ? "is-open" : "is-closed"} ${mobileExpandedPanel === "left" ? "is-mobile-expanded" : ""} ${isTourTarget("parts") ? "is-tour-target" : ""}`}
+        >
+          <button
+            type="button"
+            className="oleocon-viewer-panel-toggle"
+            onPointerDown={(event) => handleMobilePanelTitlePointerDown("left", event)}
+            onPointerUp={(event) => handleMobilePanelTitlePointerUp("left", event)}
+            onPointerCancel={handleMobilePanelTitlePointerCancel}
+            onClick={(event) => handleViewerPanelToggleClick("left", event)}
+          >
             Parts
           </button>
 
@@ -5009,8 +5162,18 @@ export default function Oleocon3DViewerPage() {
           </div>
         </aside>
 
-        <aside ref={rightPanelRef} className={`oleocon-viewer-panel oleocon-viewer-panel-right ${isRightPanelOpen ? "is-open" : "is-closed"} ${isTourTarget("tools") ? "is-tour-target" : ""} ${isTourTarget("colors") ? "is-tour-colors-active" : ""} ${isTourTarget("quickActions") ? "is-tour-quick-actions-active" : ""}`}>
-          <button type="button" className="oleocon-viewer-panel-toggle" onClick={() => setIsRightPanelOpen((value) => !value)}>
+        <aside
+          ref={rightPanelRef}
+          className={`oleocon-viewer-panel oleocon-viewer-panel-right ${isRightPanelOpen ? "is-open" : "is-closed"} ${mobileExpandedPanel === "right" ? "is-mobile-expanded" : ""} ${isTourTarget("tools") ? "is-tour-target" : ""} ${isTourTarget("colors") ? "is-tour-colors-active" : ""} ${isTourTarget("quickActions") ? "is-tour-quick-actions-active" : ""}`}
+        >
+          <button
+            type="button"
+            className="oleocon-viewer-panel-toggle"
+            onPointerDown={(event) => handleMobilePanelTitlePointerDown("right", event)}
+            onPointerUp={(event) => handleMobilePanelTitlePointerUp("right", event)}
+            onPointerCancel={handleMobilePanelTitlePointerCancel}
+            onClick={(event) => handleViewerPanelToggleClick("right", event)}
+          >
             Tools
           </button>
 
